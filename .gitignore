@@ -111,6 +111,7 @@ env.bak/
 venv.bak/
 .idea/
 .vscode/
+*.lock
 
 # Spyder project settings
 .spyderproject
