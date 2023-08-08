@@ -6,7 +6,7 @@ This repo is the repo I used while learning to build applications empowered by [
 ```pipenv shell```
 The pipfile will be created and activated.
 #### Install dependencies.
-```pipenv install langchain black google-search-results openai python-dotenv python-dateutil tweepy```
+```pipenv install langchain black google-search-results openai python-dotenv python-dateutil tweepy flask```
 
 ### Created environment vairable
 Get the Keys for the below services for this code to work correctly.

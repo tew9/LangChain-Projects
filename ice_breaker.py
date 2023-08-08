@@ -12,7 +12,7 @@ from agent.twitterlookup_agent import lookup as twitter_username_lookup
 from output_parser import person_intel_parser
 
 
-def ice_breaker(name: str) -> person_intel_parser:
+def ice_break(name: str) -> tuple[person_intel_parser, str]:
     # get the linkedin profile url from the linkedin lookup agent
     linkedin_profile_url = lookup(name=name)
     """After testing I am not going to be calling proxycurl api to limit my free api calls
@@ -21,7 +21,7 @@ def ice_breaker(name: str) -> person_intel_parser:
     linked_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_profile_url)
 
     twitter_username = twitter_username_lookup(name=name)
-    tweets = scrape_user_tweets(username=twitter_username, num_tweets=2)
+    tweets = scrape_user_tweets(username=twitter_username, num_tweets=1)
 
     # Create the summary template
     summary_template = """
@@ -48,12 +48,12 @@ def ice_breaker(name: str) -> person_intel_parser:
 
     result = chain.run(linked_information=linked_data, twitter_information=tweets)
 
-    return person_intel_parser.parse(result)
+    return (person_intel_parser.parse(result), linked_data.get("profile_pic_url"))
 
 
-if __name__ == "__main__":
-    print("Hello langChain!\n")
+# if __name__ == "__main__":
+#     print("Hello langChain!\n")
 
-    name = "Elon Musk"
+#     name = "Eden Marco Udemy"
 
-    print(ice_breaker(name=name))
+#     print(ice_break(name=name))
